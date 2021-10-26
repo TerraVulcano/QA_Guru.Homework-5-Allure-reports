@@ -31,11 +31,9 @@ public class SelenideTest {
 
         SelenideLogger.addListener("allure", new AllureSelenide());
         open(BASE_URL);
-        $(".header-search-input").click();
-        $(".header-search-input").sendKeys(REPOSITORY);
-        $(".header-search-input").submit();
+        $(".header-search-input").setValue(REPOSITORY).submit();
         $(By.linkText(REPOSITORY)).click();
         $("#issues-tab").click();
-        $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
+        $(withText("#" + ISSUE_NUMBER)).shouldBe(Condition.visible);
     }
 }

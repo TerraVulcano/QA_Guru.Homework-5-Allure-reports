@@ -36,9 +36,7 @@ public class LambdaStepsTest {
             open(BASE_URL);
         });
         step("Ищем репозиторий", () -> {
-            $(".header-search-input").click();
-            $(".header-search-input").sendKeys(REPOSITORY);
-            $(".header-search-input").submit();
+            $(".header-search-input").setValue(REPOSITORY).submit();
         });
         step("Переходим в репозиторий", () -> {
             $(By.linkText(REPOSITORY)).click();
@@ -47,7 +45,7 @@ public class LambdaStepsTest {
             $("#issues-tab").click();
         });
         step("Проверяем наличие Issue номер 68", () -> {
-            $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
+            $(withText("#" + ISSUE_NUMBER)).shouldBe(Condition.visible);
         });
     }
 }
